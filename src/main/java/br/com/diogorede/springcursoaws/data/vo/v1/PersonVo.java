@@ -119,6 +119,4 @@ public class PersonVo extends RepresentationModel<PersonVo> implements Serializa
         return true;
     }
 
-
-    
 }

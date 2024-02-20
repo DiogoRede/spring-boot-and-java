@@ -107,7 +107,7 @@ public class PersonController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a Person",
-        description = "Delete a Person by passing in a JSON and XML representation of the person!",
+        description = "Delete a Person!",
         tags = {"People"},
         responses = {
             @ApiResponse(description = "No Content", responseCode = "204", content = @Content),

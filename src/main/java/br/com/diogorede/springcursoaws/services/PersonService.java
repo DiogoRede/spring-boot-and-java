@@ -47,10 +47,6 @@ public class PersonService {
         return vo;
     }
 
-    public void delete(Long id){
-        personRepository.deleteById(id);
-    }
-
     public PersonVo update(PersonVo person){
         if(person==null) throw new RequiredObjectIsNullException();
 
@@ -82,5 +78,9 @@ public class PersonService {
             e.printStackTrace();
         }
         return vo;
+    }
+
+    public void delete(Long id){
+        personRepository.deleteById(id);
     }
 }
