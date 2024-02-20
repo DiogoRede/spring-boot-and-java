@@ -7,5 +7,5 @@ CREATE TABLE movie (
     person_id INTEGER NOT NULL,
     description TEXT NOT NULL,
     FOREIGN KEY (category_id) REFERENCES category(id),
-    FOREIGN KEY (person_id) REFERENCES person(id)
+    FOREIGN KEY (person_id) REFERENCES person(id) ON DELETE CASCADE
 );
