@@ -59,6 +59,8 @@ public class CategoryService {
         return vo;
     }
     public CategoryVo update(CategoryVo category){
+        if(category==null) throw new RequiredObjectIsNullException();
+
         var entity = DozerMapper.parseObject(category, Category.class);
 
         var vo = DozerMapper.parseObject(repository.save(entity), CategoryVo.class);
