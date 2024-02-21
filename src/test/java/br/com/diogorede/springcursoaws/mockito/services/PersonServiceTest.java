@@ -58,7 +58,7 @@ public class PersonServiceTest {
                 assertNotNull(result);
                 assertNotNull(result.getKey());
                 assertNotNull(result.getLinks());
-                assertTrue(result.toString().contains("links: [</person/1>;rel=\"self\"]"));
+                assertTrue(result.toString().contains("links: [</person/v1/1>;rel=\"self\"]"));
                 assertEquals("Addres Test1", result.getAddress());
                 assertEquals("First Name Test1", result.getFirstName());
                 assertEquals("Last Name Test1", result.getLastName());
@@ -81,7 +81,7 @@ public class PersonServiceTest {
                 assertNotNull(result);
                 assertNotNull(result.getKey());
                 assertNotNull(result.getLinks());
-                assertTrue(result.toString().contains("links: [</person/1>;rel=\"self\"]"));
+                assertTrue(result.toString().contains("links: [</person/v1/1>;rel=\"self\"]"));
                 assertEquals("Addres Test1", result.getAddress());
                 assertEquals("First Name Test1", result.getFirstName());
                 assertEquals("Last Name Test1", result.getLastName());
@@ -119,7 +119,8 @@ public class PersonServiceTest {
                 assertNotNull(result);
                 assertNotNull(result.getKey());
                 assertNotNull(result.getLinks());
-                assertTrue(result.toString().contains("links: [</person/1>;rel=\"self\"]"));
+                System.out.println(result.toString());
+                assertTrue(result.toString().contains("links: [</person/v1/1>;rel=\"self\"]"));
                 assertEquals("Addres Test1", result.getAddress());
                 assertEquals("First Name Test1", result.getFirstName());
                 assertEquals("Last Name Test1", result.getLastName());
@@ -165,18 +166,18 @@ public class PersonServiceTest {
                 assertNotNull(person1);
                 assertNotNull(person1.getKey());
                 assertNotNull(person1.getLinks());
-                assertTrue(person1.toString().contains("links: [</person/1>;rel=\"self\"]"));
+                assertTrue(person1.toString().contains("links: [</person/v1/1>;rel=\"self\"]"));
                 assertEquals("Addres Test1", person1.getAddress());
                 assertEquals("First Name Test1", person1.getFirstName());
                 assertEquals("Last Name Test1", person1.getLastName());
                 assertEquals("Female", person1.getGender());
 
                 var person12 = persons.get(12);
-
+                
                 assertNotNull(person12);
                 assertNotNull(person12.getKey());
                 assertNotNull(person12.getLinks());
-                assertTrue(person12.toString().contains("links: [</person/12>;rel=\"self\"]"));
+                assertTrue(person12.toString().contains("links: [</person/v1/12>;rel=\"self\"]"));
                 assertEquals("Addres Test12", person12.getAddress());
                 assertEquals("First Name Test12", person12.getFirstName());
                 assertEquals("Last Name Test12", person12.getLastName());
