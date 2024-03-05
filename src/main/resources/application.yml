@@ -1,5 +1,10 @@
 cors:
     originPatters: http://localhost:8080,http://localhost:3000
+security:
+    jwt:
+        token:
+            secret-key: senhasecreta
+            expire-lenght: 3600000
 spring:
     jpa:
         show-sql: false
