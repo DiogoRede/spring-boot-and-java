@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
-@RequestMapping("/movie/v1")
+@RequestMapping("/api/movie/v1")
 @Tag(name = "Movie", description = "Endpoints to manage movie")
 public class MovieController {
     

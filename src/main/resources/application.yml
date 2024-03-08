@@ -4,7 +4,7 @@ security:
     jwt:
         token:
             secret-key: senhasecreta
-            expire-lenght: 3600000
+            expire-length: 3600000
 spring:
     jpa:
         show-sql: false

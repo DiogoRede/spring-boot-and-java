@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 
 @RestController
-@RequestMapping("/category/v1")
+@RequestMapping("/api/category/v1")
 @Tag(name = "Category", description = "Endpoints to manage category")
 public class CategoryController {
 

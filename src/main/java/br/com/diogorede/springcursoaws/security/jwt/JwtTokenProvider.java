@@ -1,4 +1,4 @@
-package br.com.diogorede.springcursoaws.securityJwt;
+package br.com.diogorede.springcursoaws.security.jwt;
 
 import java.util.Base64;
 import java.util.Date;
@@ -6,15 +6,22 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
 
 import br.com.diogorede.springcursoaws.data.vo.v1.security.TokenVo;
+import br.com.diogorede.springcursoaws.exceptions.InvalidJwtAuthenticationException;
 import jakarta.annotation.PostConstruct;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public class JwtTokenProvider {
@@ -36,7 +43,7 @@ public class JwtTokenProvider {
         algorithm = Algorithm.HMAC256(secretKey.getBytes());
     }
 
-    private TokenVo createAccessToken(String username, List<String> roles){
+    public TokenVo createAccessToken(String username, List<String> roles){
         Date created = new Date();
         Date expired = new Date(created.getTime() + validityInMilliseconds);
 
@@ -68,6 +75,38 @@ public class JwtTokenProvider {
                 .withIssuedAt(created)
                 .sign(algorithm)
                 .strip();
+    }
+
+    public Authentication getAuthentication(String token){
+        DecodedJWT decodedJWT = decodedToken(token);
+        UserDetails userDetails = this.userDetailsService.loadUserByUsername(decodedJWT.getSubject());
+        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+    }
+
+    private DecodedJWT decodedToken(String token) {
+        Algorithm alg = Algorithm.HMAC256(secretKey.getBytes());
+        JWTVerifier verifier = JWT.require(alg).build();
+        return verifier.verify(token);
+    }
+
+    public String resolveToken(HttpServletRequest request){
+        String bearerToken = request.getHeader("Authorization");
+        if(bearerToken!=null && bearerToken.startsWith("Bearer ")){
+            return bearerToken.substring("Bearer ".length());
+        }
+        return null;
+    }
+
+    public boolean validateToken(String token){
+        DecodedJWT decodedJWT = decodedToken(token);
+        try {
+            if(decodedJWT.getExpiresAt().before(new Date())){
+                return false;
+            }
+            return true;
+        } catch (Exception e) {
+            throw new InvalidJwtAuthenticationException("Expired or Invalid JWT token!");
+        }
     }
 
 }
