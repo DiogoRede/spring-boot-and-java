@@ -1,6 +1,5 @@
 package br.com.diogorede.springcursoaws.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,15 +10,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import br.com.diogorede.springcursoaws.security.jwt.JwtConfigurer;
-import br.com.diogorede.springcursoaws.security.jwt.JwtTokenProvider;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
-    @Autowired
-    private JwtTokenProvider provider;
  
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
