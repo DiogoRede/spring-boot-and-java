@@ -11,8 +11,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import br.com.diogorede.springcursoaws.security.jwt.JwtConfigurer;
+import br.com.diogorede.springcursoaws.security.jwt.JwtTokenFilter;
 import br.com.diogorede.springcursoaws.security.jwt.JwtTokenProvider;
 
 @Configuration
@@ -28,7 +29,12 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
-        return http.csrf(csrf -> csrf.disable())
+        JwtTokenFilter customFilter = new JwtTokenFilter(provider);
+
+        return http
+                   .httpBasic(basic -> basic.disable())
+                   .csrf(csrf -> csrf.disable())
+                   .addFilterBefore(customFilter, UsernamePasswordAuthenticationFilter.class)
                    .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                    .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/signin", "/auth/refresh/**").permitAll()
@@ -37,10 +43,7 @@ public class SecurityConfig {
                         .requestMatchers("/users").denyAll()
                         .anyRequest().authenticated()
                     )
-                    .cors()
-                    .and()
-                    .apply(new JwtConfigurer(provider))
-                    .and()
+                    .cors(cors -> {})
                    .build();
     }
 

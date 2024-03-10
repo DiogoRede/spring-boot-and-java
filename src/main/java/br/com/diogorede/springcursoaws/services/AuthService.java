@@ -25,6 +25,7 @@ public class AuthService {
     @Autowired
     private UserRepository repository;
 
+    @SuppressWarnings("rawtypes")
     public ResponseEntity signin(AccountCredentialsVo vo){
         try {
             String username = vo.getUsername();
@@ -46,6 +47,22 @@ public class AuthService {
         } catch (Exception e) {
             throw new BadCredentialsException("Invalid username/password supplied!");
         }
+    }
+
+    @SuppressWarnings("rawtypes")
+    public ResponseEntity refreshToken(String username, String refreshToken){
+
+        var user = repository.findByUsername(username);
+
+        var tokenResponse = new TokenVo();
+
+        if(user!=null){
+            tokenResponse = provider.refreshToken(refreshToken);
+        }else{
+            throw new UsernameNotFoundException("Username " + username+ " not found!");
+        }
+
+        return ResponseEntity.ok(tokenResponse);
     }
 
 }
