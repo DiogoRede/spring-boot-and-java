@@ -68,7 +68,7 @@ public class MovieServiceTest {
         assertNotNull(movie1.getLinks());
         assertNotNull(movie1.getCategory());
         assertNotNull(movie1.getPerson());
-        assertTrue(movie1.toString().contains("links: [</movie/v1/1>;rel=\"self\"]"));
+        assertTrue(movie1.toString().contains("links: [</api/v1/movie/1>;rel=\"self\"]"));
         assertEquals("Description Test1",movie1.getDescription());
         assertEquals("Name Test1",movie1.getName());
         assertEquals(1,movie1.getPriority());
@@ -81,7 +81,7 @@ public class MovieServiceTest {
         assertNotNull(movie13.getCategory());
         assertNotNull(movie13.getPerson());
         System.out.println(movie13.toString());
-        assertTrue(movie13.toString().contains("links: [</movie/v1/13>;rel=\"self\"]"));
+        assertTrue(movie13.toString().contains("links: [</api/v1/movie/13>;rel=\"self\"]"));
         assertEquals("Description Test13",movie13.getDescription());
         assertEquals("Name Test13",movie13.getName());
         assertEquals(13,movie13.getPriority());
@@ -102,7 +102,7 @@ public class MovieServiceTest {
         assertNotNull(result.getLinks());
         assertNotNull(result.getCategory());
         assertNotNull(result.getPerson());
-        assertTrue(result.toString().contains("links: [</movie/v1/1>;rel=\"self\"]"));
+        assertTrue(result.toString().contains("links: [</api/v1/movie/1>;rel=\"self\"]"));
         assertEquals("Description Test1",result.getDescription());
         assertEquals("Name Test1",result.getName());
         assertEquals(1,result.getPriority());
@@ -129,7 +129,7 @@ public class MovieServiceTest {
         assertNotNull(result.getLinks());
         assertNotNull(result.getCategory());
         assertNotNull(result.getPerson());
-        assertTrue(result.toString().contains("links: [</movie/v1/1>;rel=\"self\"]"));
+        assertTrue(result.toString().contains("links: [</api/v1/movie/1>;rel=\"self\"]"));
         assertEquals("Description Test1",result.getDescription());
         assertEquals("Name Test1",result.getName());
         assertEquals(1,result.getPriority());
@@ -194,7 +194,7 @@ public class MovieServiceTest {
         assertNotNull(result.getLinks());
         assertNotNull(result.getCategory());
         assertNotNull(result.getPerson());
-        assertTrue(result.toString().contains("links: [</movie/v1/1>;rel=\"self\"]"));
+        assertTrue(result.toString().contains("links: [</api/v1/movie/1>;rel=\"self\"]"));
         assertEquals("Description Test1",result.getDescription());
         assertEquals("Name Test1",result.getName());
         assertEquals(1,result.getPriority());

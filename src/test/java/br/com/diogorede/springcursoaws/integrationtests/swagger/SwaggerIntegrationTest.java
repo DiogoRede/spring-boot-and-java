@@ -1,8 +1,8 @@
 package br.com.diogorede.springcursoaws.integrationtests.swagger;
 
 import static io.restassured.RestAssured.given;
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import br.com.diogorede.springcursoaws.configs.TestConfigs;

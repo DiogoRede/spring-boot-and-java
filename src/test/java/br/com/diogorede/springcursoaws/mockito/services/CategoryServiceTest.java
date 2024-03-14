@@ -55,7 +55,7 @@ public class CategoryServiceTest {
         assertNotNull(result);
         assertNotNull(result.getKey());
         assertNotNull(result.getLinks());
-        assertTrue(result.toString().contains("links: [</category/v1/1>;rel=\"self\"]"));
+        assertTrue(result.toString().contains("links: [</api/v1/category/1>;rel=\"self\"]"));
         assertEquals("Name Test1",result.getName());
     }
 
@@ -85,14 +85,14 @@ public class CategoryServiceTest {
         assertNotNull(category1);
         assertNotNull(category1.getKey());
         assertNotNull(category1.getLinks());
-        assertTrue(category1.toString().contains("links: [</category/v1/1>;rel=\"self\"]"));
+        assertTrue(category1.toString().contains("links: [</api/v1/category/1>;rel=\"self\"]"));
         assertEquals("Name Test1",category1.getName());
 
         var category13 = categories.get(13);
         assertNotNull(category13);
         assertNotNull(category13.getKey());
         assertNotNull(category13.getLinks());
-        assertTrue(category13.toString().contains("links: [</category/v1/13>;rel=\"self\"]"));
+        assertTrue(category13.toString().contains("links: [</api/v1/category/13>;rel=\"self\"]"));
         assertEquals("Name Test13",category13.getName());
     }
 
@@ -112,7 +112,7 @@ public class CategoryServiceTest {
         assertNotNull(result);
         assertNotNull(result.getKey());
         assertNotNull(result.getLinks());
-        assertTrue(result.toString().contains("links: [</category/v1/1>;rel=\"self\"]"));
+        assertTrue(result.toString().contains("links: [</api/v1/category/1>;rel=\"self\"]"));
         assertEquals("Name Test1",result.getName());
     }
 
@@ -146,7 +146,7 @@ public class CategoryServiceTest {
         assertNotNull(result);
         assertNotNull(result.getKey());
         assertNotNull(result.getLinks());
-        assertTrue(result.toString().contains("links: [</category/v1/1>;rel=\"self\"]"));
+        assertTrue(result.toString().contains("links: [</api/v1/category/1>;rel=\"self\"]"));
         assertEquals("Name Test1",result.getName());
     }
 
