@@ -13,6 +13,7 @@ import br.com.diogorede.springcursoaws.exceptions.RequiredObjectIsNullException;
 import br.com.diogorede.springcursoaws.exceptions.ResourceNotFoundException;
 import br.com.diogorede.springcursoaws.mapper.DozerMapper;
 import br.com.diogorede.springcursoaws.repositories.PersonRepository;
+import jakarta.transaction.Transactional;
 
 @Service
 public class PersonService {
@@ -83,4 +84,19 @@ public class PersonService {
     public void delete(Long id){
         personRepository.deleteById(id);
     }
+
+    @Transactional
+    public PersonVo disablePerson(Long id){
+        personRepository.disablePerson(id);
+        var entity = personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Person not found!"));
+
+        PersonVo vo = DozerMapper.parseObject(entity, PersonVo.class);
+        try {
+            vo.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return vo;
+    }
+
 }

@@ -27,11 +27,20 @@ public class PersonVo extends RepresentationModel<PersonVo> implements Serializa
 
     // @JsonIgnore (IGNORAR NO JSON ENVIADO)
     private String gender;
+    private Boolean enabled;
 
     public PersonVo(){}
 
     public Long getKey() {
         return key;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public void setKey(Long key) {
@@ -79,6 +88,7 @@ public class PersonVo extends RepresentationModel<PersonVo> implements Serializa
         result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
         result = prime * result + ((address == null) ? 0 : address.hashCode());
         result = prime * result + ((gender == null) ? 0 : gender.hashCode());
+        result = prime * result + ((enabled == null) ? 0 : enabled.hashCode());
         return result;
     }
 
@@ -115,6 +125,11 @@ public class PersonVo extends RepresentationModel<PersonVo> implements Serializa
             if (other.gender != null)
                 return false;
         } else if (!gender.equals(other.gender))
+            return false;
+        if (enabled == null) {
+            if (other.enabled != null)
+                return false;
+        } else if (!enabled.equals(other.enabled))
             return false;
         return true;
     }
